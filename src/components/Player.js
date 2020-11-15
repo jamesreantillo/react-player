@@ -41,11 +41,10 @@ const Player = ({
   const skipTrackHandler = (direction) => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === 'skip-forward') {
-      const check = (currentIndex + 1) % songs.length;
       setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-      console.log(`currentIndex ${currentIndex + 1}`);
-      console.log(songs.length);
-      console.log(check);
+    }
+    if (direction === 'skip-forward') {
+      setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
   };
 

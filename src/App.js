@@ -51,7 +51,8 @@ function App() {
         onLoadedMetadata={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
-      ></audio>
+        >
+      </audio>
     </div>
   );
 }
