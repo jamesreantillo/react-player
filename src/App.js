@@ -14,14 +14,16 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
-    duration: 0,
+    songDuration: 0,
   });
   const [libraryStatus, setLibraryStatus] = useState(false)
 
   const timeUpdateHandler = (e) => {
+    const songDuration = e.target.duration ? e.target.duration : 0;
+    console.log('check', songDuration)
     const currentTime = e.target.currentTime;
-    const duration = e.target.duration;
-    setSongInfo({ ...songInfo, currentTime, duration });
+    // const duration = {songDuration}
+    setSongInfo({ ...songInfo, currentTime, songDuration });
   };
 
   return (

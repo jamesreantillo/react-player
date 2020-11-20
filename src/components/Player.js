@@ -76,11 +76,11 @@ const Player = ({
         <input
           onChange={dragHandler}
           min={0}
-          max={songInfo.duration || 0}
+          max={songInfo.songDuration || 0}
           value={songInfo.currentTime}
           type='range'
         />
-        <p>{formatTime(songInfo.duration)}</p>
+        <p>{formatTime(songInfo.songDuration)}</p>
       </div>
       <div className='play-control'>
         <FontAwesomeIcon
