@@ -4,8 +4,8 @@ import Library from './components/Libary';
 import Player from './components/Player';
 import Song from './components/Song';
 import Nav from './components/Nav'
-import chillHop from './util';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import chillHop from './data';
+
 
 function App() {
   const audioRef = useRef(null);
