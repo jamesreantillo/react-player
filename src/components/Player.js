@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import playAudio from '../util';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlay,
@@ -63,23 +64,37 @@ const Player = ({
     if (direction === 'skip-back') {
       if (currentIndex - (1 % songs.length) === -1) {
         setCurrentSong(songs[songs.length - 1]);
+        playAudio(isPlaying, audioRef);
         return;
       }
       setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
+    playAudio(isPlaying, audioRef);
+  };
+
+  const trackAnim = {
+    transform: `translateX(${songInfo.animationPercentage}%)`,
   };
 
   return (
     <div className='player'>
       <div className='time-control'>
         <p>{formatTime(songInfo.currentTime)}</p>
-        <input
-          onChange={dragHandler}
-          min={0}
-          max={songInfo.songDuration || 0}
-          value={songInfo.currentTime}
-          type='range'
-        />
+        <div
+          style={{
+            background: `linear-gradient(to right, ${currentSong.color[0]},${currentSong.color[1]})`,
+          }}
+          className='track'
+        >
+          <input
+            onChange={dragHandler}
+            min={0}
+            max={songInfo.songDuration || 0}
+            value={songInfo.currentTime}
+            type='range'
+          />
+          <div style={trackAnim} className='animate-track'></div>
+        </div>
         <p>{formatTime(songInfo.songDuration)}</p>
       </div>
       <div className='play-control'>

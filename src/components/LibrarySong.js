@@ -1,4 +1,5 @@
 import React from 'react';
+import playAudio from '../util'
 
 const LibrarySong = ({ song, songs, setCurrentSong, audioRef, isPlaying, id, setSongs }) => {
   
@@ -20,15 +21,8 @@ const LibrarySong = ({ song, songs, setCurrentSong, audioRef, isPlaying, id, set
       }
     });
     setSongs(newSongs)
+    playAudio(isPlaying, audioRef)
     
-    if (isPlaying) {
-      const playPromise = audioRef.current.play()
-      if (playPromise !== undefined) {
-        playPromise.then((audio) => {
-          audioRef.current.play()
-        }).catch((error) => console.log('error', error));
-      }
-    }
   }
 
   return (
