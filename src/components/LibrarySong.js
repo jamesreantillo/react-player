@@ -1,18 +1,45 @@
 import React from 'react';
+import {playAudio} from '../util'
 
 
 const LibrarySong = ({ song, songs, setCurrentSong, audioRef, isPlaying, id, setSongs }) => {
   
-  const songSelectHandler = async () => {
-    const selectedSong = songs.filter((state) => state.id === id);
-    await setCurrentSong(selectedSong[0])
+  // const songSelectHandler = async () => {
+  //   const selectedSong = songs.filter((state) => state.id === id);
+  //   console.log('check', selectedSong)
+  //   await setCurrentSong({...selectedSong[0]})
+  //   console.log('check', setCurrentSong)
 
+  //   const newSongs = songs.map((song) => {
+  //     if(song.id === id) {
+  //       return {
+  //         ...song,
+  //         active: true
+  //       }
+  //     } else {
+  //       return {
+  //         ...song,
+  //         active: false,
+  //       };
+  //     }
+  //   });
+  //   console.log('check', newSongs)
+  //    const check = setSongs(newSongs)
+  //    console.log(check)
+  //   if (isPlaying) audioRef.current.play();
+    
+  // }
+
+  const songSelectHandler =  () => {
+    const selectedSong = songs.filter((state) => state.id === id);
+     setCurrentSong({ ...selectedSong[0] });
+    //Set Active in library
     const newSongs = songs.map((song) => {
-      if(song.id === id) {
+      if (song.id === id) {
         return {
           ...song,
-          active: true
-        }
+          active: true,
+        };
       } else {
         return {
           ...song,
@@ -20,10 +47,11 @@ const LibrarySong = ({ song, songs, setCurrentSong, audioRef, isPlaying, id, set
         };
       }
     });
-    setSongs(newSongs)
-    if (isPlaying) audioRef.current.play();
-    
-  }
+    setSongs(newSongs);
+
+    //Play audio
+    playAudio(isPlaying, audioRef)
+  };
 
   return (
     <div onClick={songSelectHandler} className={`library-song ${song.active ? 'selected' : ''}`}>

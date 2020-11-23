@@ -21,7 +21,7 @@ const Libary = ({
             id={song.id}
             key={song.id}
             audioRef={audioRef}
-            isPLaying={isPlaying}
+            isPlaying={isPlaying}
             setSongs={setSongs}
           />
         ))}
